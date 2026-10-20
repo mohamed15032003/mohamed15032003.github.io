@@ -14,13 +14,14 @@
 :root{
   --paper:#FFFFFF; --surface:#F4F7FD; --ink:#0E1A33; --muted:#56637E; --line:#DCE3F0;
   --accent:#1D5BD8; --accent-soft:#E5EDFC; --up:#1D5BD8;
+  --deep:#0B2E7A; --deep2:#1749B8; --tint:#EAF1FE; --on-deep:#FFFFFF; --on-deep-muted:#C4D4F5;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
   color-scheme:light;
 }
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 a{color:var(--accent);text-underline-offset:3px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
@@ -147,11 +148,59 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;font-family:var(
 .seg button{font:500 12px var(--body);padding:6px 12px;background:none;border:0;color:var(--muted);cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--paper)}
 #stress{display:block;width:100%;height:170px}
-@media (prefers-reduced-motion:reduce){ .tk{animation:none} }
+.fx{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:10px}
+@media (max-width:560px){ .fx{grid-template-columns:minmax(0,1fr)} }
+.fx-in,.fx-dash{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px;min-width:0}
+.fx-msg{font-size:13px;line-height:1.45;min-height:58px;color:var(--ink);border-left:3px solid var(--accent);padding-left:8px}
+.fx-tags{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:10px}
+.fx-t{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 7px;min-width:0}
+.fx-t span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fx-t b{font-size:12.5px;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+.fx-t.on{border-color:var(--accent);animation:pop .35s ease} .fx-t.on b{color:var(--accent)}
+.fx-src{margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.fx-src.fb{color:var(--ink)} .fx-src.fb::before{content:"↺ ";color:var(--accent)}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:10px}
+.kpis div{min-width:0} .kpis b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpis span{font-size:10.5px;color:var(--muted)}
+.bars{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.bar{display:grid;grid-template-columns:72px minmax(0,1fr) 22px;gap:6px;align-items:center;font-size:11px;color:var(--muted)}
+.bar .tr{height:7px;background:var(--surface);border-radius:4px;overflow:hidden}
+.bar .tr i{display:block;height:100%;background:var(--accent);border-radius:4px;transition:width .5s ease}
+.bar b{font-weight:500;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.senti{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--surface)}
+.senti i{display:block;height:100%;transition:width .5s ease;width:0}
+#sP,.d.p{background:var(--accent)} #sN,.d.n{background:#9DB5E8} #sX,.d.x{background:var(--ink)}
+.senti-l{display:flex;gap:10px;flex-wrap:wrap;margin-top:5px;font-size:10.5px;color:var(--muted)}
+.senti-l .d{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;vertical-align:middle}
+@media (prefers-reduced-motion:reduce){ .tk,.fx-t.on{animation:none} .bar .tr i,.senti i{transition:none} }
+
+/* --- blue bands (full-bleed behind the centered column) --- */
+html,body{overflow-x:clip}
+.top,.hero,.chart,section.alt,footer{position:relative;isolation:isolate}
+.top::before,.hero::before,.chart::before,section.alt::before,footer::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-1}
+.top::before{background:var(--deep)}
+.hero::before{background:linear-gradient(180deg,var(--deep) 0%,var(--deep2) 100%)}
+.top,.hero{--ink:var(--on-deep);--muted:var(--on-deep-muted);--line:rgba(255,255,255,.22);--accent:var(--on-deep);--surface:rgba(255,255,255,.10);color:var(--ink)}
+.top{border-bottom:0;padding-block:21px}
+.hero .btn.primary{background:#FFFFFF;border-color:#FFFFFF;color:var(--deep)}
+.hero .btn:hover{border-color:#FFFFFF}
+.photo img{border-color:rgba(255,255,255,.9);box-shadow:0 0 0 4px rgba(255,255,255,.18)}
+.fiche{--ink:#0E1A33;--muted:#56637E;--line:#DCE3F0;--accent:#1D5BD8;--up:#1D5BD8;background:#FFFFFF;color:var(--ink);border:0;box-shadow:0 10px 30px rgba(6,24,66,.25)}
+.hero-wrap{padding-bottom:0}
+.chart{padding-block:22px 26px}
+.chart::before{background:var(--tint)}
+section.alt{border-top-color:transparent;--surface:#FFFFFF}
+section.alt::before{background:var(--tint)}
+section.alt + section.block{border-top-color:transparent}
+.label{color:var(--accent);font-weight:500}
+.label::before{content:"";display:block;width:28px;height:3px;border-radius:2px;background:var(--accent);margin-bottom:10px}
+h3{color:var(--deep)}
+.tag{background:var(--accent-soft);color:var(--deep)}
+footer{border-top-color:transparent;color:var(--on-deep-muted);padding-left:0;padding-right:0}
+footer::before{background:var(--deep)}
 </style>
 </head>
 <body>
-
 <div class="wrap">
   <header class="top">
     <div class="mark"><b>MD</b> · Tunis, Tunisie</div>
@@ -230,7 +279,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;font-family:var(
     </div>
   </section>
 
-  <section class="block" id="projets">
+  <section class="block alt" id="projets">
     <div class="label">Projets</div>
     <div>
       <article class="feature">
@@ -257,16 +306,34 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;font-family:var(
         <span class="badge">2e place au Bal des Projets ESPRIT 2026</span>
         <ul>
           <li>Plateforme qui couvre microcrédit, micro-assurance et réclamations, avec des rôles admin, agent et client.</li>
-          <li>Ma contribution : le module réclamations et feedback clients, et l'intégration d'un chatbot dans l'application.</li>
+          <li><b>Mon module : réclamations et feedback clients</b>, de la saisie par le client jusqu'au suivi par l'admin.</li>
+          <li>Analyse automatique du texte par IA : dès qu'un client envoie une réclamation ou un feedback, la <b>catégorie</b>, la <b>priorité</b> et le <b>sentiment</b> sont prédits.</li>
+          <li>Un <b>mécanisme de repli (fallback)</b> garde la classification disponible quand l'IA ne répond pas.</li>
+          <li><b>Tableau de bord de suivi</b> des réclamations et feedbacks, avec statistiques.</li>
+          <li>Intégration d'un chatbot dans l'application.</li>
         </ul>
-        <div class="tags"><span class="tag">Spring Boot</span><span class="tag">Angular</span><span class="tag">MySQL</span></div>
+        <div class="tags"><span class="tag">Spring Boot</span><span class="tag">Angular</span><span class="tag">MySQL</span><span class="tag">Classification de texte</span></div>
         <figure class="mini">
-          <div class="board" id="board" aria-hidden="true">
-            <div class="col"><div class="ch">Ouverte <small>client</small></div></div>
-            <div class="col"><div class="ch">En traitement <small>agent</small></div></div>
-            <div class="col"><div class="ch">Résolue <small>suivi admin</small></div></div>
+          <div class="fx" aria-hidden="true">
+            <div class="fx-in">
+              <div class="clabel">Message du client</div>
+              <div class="fx-msg" id="fxMsg">&nbsp;</div>
+              <div class="fx-tags">
+                <div class="fx-t"><span>Catégorie</span><b id="fxCat">–</b></div>
+                <div class="fx-t"><span>Priorité</span><b id="fxPri">–</b></div>
+                <div class="fx-t"><span>Sentiment</span><b id="fxSen">–</b></div>
+              </div>
+              <div class="fx-src" id="fxSrc">en attente…</div>
+            </div>
+            <div class="fx-dash">
+              <div class="clabel">Tableau de suivi</div>
+              <div class="kpis"><div><b id="kR">0</b><span>réclamations</span></div><div><b id="kF">0</b><span>feedbacks</span></div><div><b id="kH">0</b><span>priorité haute</span></div></div>
+              <div class="bars" id="fxBars"></div>
+              <div class="senti"><i id="sP"></i><i id="sN"></i><i id="sX"></i></div>
+              <div class="senti-l"><span><i class="d p"></i>positif</span><span><i class="d n"></i>neutre</span><span><i class="d x"></i>négatif</span></div>
+            </div>
           </div>
-          <figcaption><b>Mon module dans FORSA</b><span>le parcours d'une réclamation, du client jusqu'à la résolution</span></figcaption>
+          <figcaption><b>Mon module dans FORSA</b><span>chaque message est classé à l'arrivée, puis compté dans le tableau de suivi (exemples fictifs)</span></figcaption>
         </figure>
       </article>
 
@@ -274,7 +341,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;font-family:var(
         <div class="meta"><h3>Simulateur de salle de marché</h3><span class="when">depuis sept. 2026</span></div>
         <div class="org">Projet d'équipe ESPRIT</div>
         <ul>
-          <li>Responsable du module analyse financière et IA (prédiction de marché, agent de trading) d'un simulateur qui couvre trading, stress tests et actuariat.</li>
+          <li>Simulateur de salle de marché développé en équipe, qui couvre trading, analyse financière et IA (prédiction de marché, agent de trading), stress tests et actuariat.</li>
           <li>Application web en Spring Boot (API) et React (interface), avec un pipeline de données de marché sur des actions du S&amp;P 500 étudié pendant des crises réelles (2008, COVID-19). Backlog organisé dans Jira.</li>
         </ul>
         <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">Python</span><span class="tag">Jira</span></div>
@@ -304,7 +371,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;font-family:var(
     </div>
   </section>
 
-  <section class="block" id="formation">
+  <section class="block alt" id="formation">
     <div class="label">Formation</div>
     <div>
       <article class="item">
@@ -431,22 +498,49 @@ document.querySelectorAll('.copy').forEach(function(b){
     }
   }
 
-  /* --- 3. FORSA: complaint lifecycle board --- */
-  var board=document.getElementById('board');
-  if(board){
-    var cols=board.querySelectorAll('.col');
-    var tickets=['Retard de versement du microcrédit','Contrat de micro-assurance introuvable','Erreur sur un échéancier','Demande de remboursement'];
-    var live=[], nid=0;
-    function card(t){ var d=document.createElement('div'); d.className='tk'; d.innerHTML='<em>#'+(1040+nid)+'</em>'; d.appendChild(document.createTextNode(t)); return d; }
-    function place(){ cols.forEach(function(c){ c.querySelectorAll('.tk').forEach(function(x){x.remove();}); }); live.forEach(function(k){ cols[k.stage].appendChild(k.el); }); }
-    if(reduce){ for(var i=0;i<3;i++){ nid++; live.push({el:card(tickets[i]),stage:i}); } place(); }
+  /* --- 3. FORSA: complaint & feedback classification + dashboard --- */
+  var fxMsg=document.getElementById('fxMsg');
+  if(fxMsg){
+    var FM=[
+      ['Mon versement de microcrédit a dix jours de retard, je ne peux plus payer mon fournisseur.','Crédit','Haute','Négatif','R'],
+      ['L\'agent a réglé mon problème très vite, merci !','Service','Basse','Positif','F'],
+      ['Je ne trouve pas mon contrat de micro-assurance dans mon espace client.','Assurance','Moyenne','Négatif','R'],
+      ['Comment changer la date de mon échéance ce mois-ci ?','Crédit','Basse','Neutre','R'],
+      ['L\'application est claire, ma demande de prêt a été simple à faire.','Service','Basse','Positif','F'],
+      ['Le remboursement de mon sinistre n\'est toujours pas arrivé.','Assurance','Haute','Négatif','R'],
+      ['Le délai de réponse était correct.','Service','Basse','Neutre','F'],
+      ['On m\'a prélevé deux fois la même mensualité.','Paiement','Haute','Négatif','R']
+    ];
+    var cats=['Crédit','Assurance','Paiement','Service'], cnt={}, sen={Positif:0,Neutre:0,'Négatif':0}, kR=0,kF=0,kH=0, mi=0;
+    var bars=document.getElementById('fxBars'), bEl={};
+    cats.forEach(function(c){ cnt[c]=0; var r=document.createElement('div'); r.className='bar'; r.innerHTML='<span></span><div class="tr"><i style="width:0"></i></div><b>0</b>'; r.firstChild.textContent=c; bars.appendChild(r); bEl[c]=r; });
+    var T={cat:document.getElementById('fxCat'),pri:document.getElementById('fxPri'),sen:document.getElementById('fxSen')}, src=document.getElementById('fxSrc');
+    function setT(el,v){ el.textContent=v; el.parentNode.classList.toggle('on',v!=='–'); }
+    function dash(){
+      var mx=Math.max(1,Math.max.apply(null,cats.map(function(c){return cnt[c];})));
+      cats.forEach(function(c){ bEl[c].querySelector('i').style.width=(cnt[c]/mx*100)+'%'; bEl[c].querySelector('b').textContent=cnt[c]; });
+      var tot=Math.max(1,sen.Positif+sen.Neutre+sen['Négatif']);
+      document.getElementById('sP').style.width=(sen.Positif/tot*100)+'%'; document.getElementById('sN').style.width=(sen.Neutre/tot*100)+'%'; document.getElementById('sX').style.width=(sen['Négatif']/tot*100)+'%';
+      document.getElementById('kR').textContent=kR; document.getElementById('kF').textContent=kF; document.getElementById('kH').textContent=kH;
+    }
+    function count(m){ cnt[m[1]]++; sen[m[3]]++; if(m[4]==='R')kR++; else kF++; if(m[2]==='Haute')kH++; dash(); }
+    function srcTxt(i,m){ var fb=(i%4===3); src.className='fx-src'+(fb?' fb':''); src.textContent=(m[4]==='R'?'réclamation':'feedback')+' · '+(fb?'classification : fallback':'classification : IA'); }
+    if(reduce){ FM.forEach(count); var m0=FM[0]; fxMsg.textContent=m0[0]; setT(T.cat,m0[1]); setT(T.pri,m0[2]); setT(T.sen,m0[3]); srcTxt(0,m0); }
     else {
-      (function step(){
-        if(!document.hidden){
-          live.forEach(function(k){ k.stage++; }); live=live.filter(function(k){ return k.stage<3; });
-          nid++; live.unshift({el:card(tickets[nid%tickets.length]),stage:0}); place();
-        }
-        setTimeout(step,1900);
+      (function next(){
+        if(document.hidden){ setTimeout(next,1000); return; }
+        var i=mi%FM.length, m=FM[i]; mi++;
+        if(i===0 && mi>1){ cats.forEach(function(c){cnt[c]=0;}); sen={Positif:0,Neutre:0,'Négatif':0}; kR=kF=kH=0; dash(); }
+        setT(T.cat,'–'); setT(T.pri,'–'); setT(T.sen,'–'); src.className='fx-src'; src.textContent='analyse…';
+        var k=0; fxMsg.textContent='';
+        (function type(){
+          k+=2; fxMsg.textContent=m[0].slice(0,k);
+          if(k<m[0].length){ setTimeout(type,28); return; }
+          setTimeout(function(){ setT(T.cat,m[1]); },350);
+          setTimeout(function(){ setT(T.pri,m[2]); },650);
+          setTimeout(function(){ setT(T.sen,m[3]); srcTxt(i,m); count(m); },950);
+          setTimeout(next,3200);
+        })();
       })();
     }
   }
