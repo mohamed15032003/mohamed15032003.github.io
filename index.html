@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mohamed Derbel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Mohamed Derbel – élève ingénieur en ingénierie financière à ESPRIT. Développement full-stack, data et IA appliqués à la finance. PFE de 6 mois dès février 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column like an annual report, a left rail of mono labels per section, hero with a "fiche" of availability terms */
+:root{
+  --paper:#FFFFFF; --surface:#F4F7FD; --ink:#0E1A33; --muted:#56637E; --line:#DCE3F0;
+  --accent:#1D5BD8; --accent-soft:#E5EDFC; --up:#1D5BD8;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:980px;margin:0 auto}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mark{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--muted)}
+.mark b{color:var(--ink);font-weight:500}
+.nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+.nav a{color:var(--muted);text-decoration:none}
+.nav a:hover{color:var(--accent)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:40px;padding-block:56px 36px;align-items:start}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,7vw,68px);line-height:1;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+.role{font-family:var(--display);font-weight:500;font-size:clamp(19px,2.6vw,24px);line-height:1.3;margin:0 0 20px;text-wrap:balance}
+.intro{color:var(--muted);max-width:58ch;margin:0 0 26px}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--body)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.btn:hover{border-color:var(--accent)}
+
+.fiche{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 22px 18px}
+.fiche h2{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 14px;display:flex;justify-content:space-between;align-items:center}
+.status{display:inline-flex;align-items:center;gap:6px;color:var(--up)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--up)}
+.fiche dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:14px}
+.fiche dt{color:var(--muted)}
+.fiche dd{margin:0;font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+
+/* sections */
+section.block{display:grid;grid-template-columns:170px minmax(0,1fr);gap:32px;padding-block:44px;border-top:1px solid var(--line)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:6px}
+.label span{display:block;color:var(--accent);margin-bottom:4px}
+h3{font-family:var(--display);font-weight:700;font-size:21px;line-height:1.25;margin:0;text-wrap:balance}
+
+.item{display:grid;gap:6px;padding-bottom:28px;margin-bottom:28px;border-bottom:1px dashed var(--line)}
+.item:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.org{color:var(--muted);font-size:15px}
+.item ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
+.item li{max-width:68ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px;background:var(--accent-soft);color:var(--ink)}
+
+/* featured project */
+.feature{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;margin-bottom:28px}
+.feature .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0 4px;font-family:var(--mono);font-size:12.5px}
+.flow span{padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+.flow i{font-style:normal;color:var(--muted)}
+.feature .links{margin-top:16px}
+.badge{display:inline-block;justify-self:start;font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px;border:1px solid var(--accent);color:var(--accent);margin-top:2px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 32px}
+.skills h4{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.skills p{margin:0}
+
+/* contact */
+.contact{display:grid;gap:12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:8px;flex-wrap:wrap}
+.row .k{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:90px}
+.row .v{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:500}
+.copy{font-family:var(--mono);font-size:12px;background:none;border:1px solid var(--line);border-radius:6px;padding:5px 10px;color:var(--ink);cursor:pointer}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+
+footer{border-top:1px solid var(--line);padding-block:24px 40px;font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;padding-block:40px 36px;gap:28px}
+  section.block{grid-template-columns:1fr;gap:16px;padding-block:36px}
+  .skills{grid-template-columns:1fr}
+  .nav{display:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero > *{animation:rise .6s ease both}
+  .hero > *:nth-child(2){animation-delay:.12s}
+  @keyframes rise{from{transform:translateY(8px)}to{transform:none}}
+}
+
+/* hero animation: Monte-Carlo paths of geometric Brownian motion */
+.hero-wrap{padding-bottom:28px}
+.chart{position:relative}
+#path{display:block;width:100%;height:190px;pointer-events:none}
+.legend{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 18px;font-size:13.5px}
+.legend li{display:flex;gap:8px;align-items:baseline;opacity:.35;transition:opacity .4s}
+.legend li.on{opacity:1}
+.legend .n{flex:none;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--paper);font:500 11px var(--mono);display:inline-flex;align-items:center;justify-content:center;transform:translateY(3px)}
+.legend li:last-child .n{background:var(--paper);color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.legend time{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-left:auto;white-space:nowrap;padding-left:6px}
+.model{margin:8px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.5;display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap}
+.model b{color:var(--accent);font-weight:500}
+.side{display:grid;gap:16px}
+.photo{display:flex;align-items:center;gap:14px}
+.photo img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+.photo p{margin:0;font-size:14px;color:var(--muted);line-height:1.4}
+.photo p b{display:block;color:var(--ink);font-weight:600;font-size:15px}
+@media (max-width:760px){ #path{height:170px} }
+.mini{margin:18px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 14px 10px}
+.mini canvas{display:block;width:100%;height:150px}
+.mini figcaption{margin-top:8px;font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px;font-variant-numeric:tabular-nums}
+.mini figcaption b{color:var(--accent);font-weight:500}
+.mini.wide{grid-column:1/-1;margin-top:4px}
+.mini.wide canvas{height:190px}
+.flow span{transition:background .3s,border-color .3s,color .3s}
+.flow span.on{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.console{margin:14px 0 4px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-family:var(--mono);font-size:12.5px;line-height:1.7;min-height:118px}
+.clabel{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+#cons .q{color:var(--ink)} #cons .s{color:var(--muted)} #cons .a{color:var(--accent)}
+#cons .cur::after{content:"▍";color:var(--accent);margin-left:2px}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;min-height:132px}
+.col{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ch{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ch small{display:block;text-transform:none;letter-spacing:0;font-size:10.5px;opacity:.85}
+.tk{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:4px;padding:5px 7px;font-size:12px;line-height:1.3;overflow-wrap:anywhere;animation:pop .35s ease}
+.tk em{display:block;font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+@keyframes pop{from{transform:scale(.96);opacity:.4}to{transform:none;opacity:1}}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-bottom:10px}
+.seg button{font:500 12px var(--body);padding:6px 12px;background:none;border:0;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--paper)}
+#stress{display:block;width:100%;height:170px}
+@media (prefers-reduced-motion:reduce){ .tk{animation:none} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark"><b>MD</b> · Tunis, Tunisie</div>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Expériences</a>
+      <a href="#projets">Projets</a>
+      <a href="#competences">Compétences</a>
+      <a href="#formation">Formation</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero-wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Ingénierie financière · ESPRIT</p>
+      <h1>Mohamed Derbel</h1>
+      <p class="role">Développeur full-stack, data et IA, avec un pied dans la finance.</p>
+      <p class="intro">Je suis en dernière année d'ingénierie financière à ESPRIT, une formation qui mélange finance et génie logiciel. Je construis des applications complètes, je fais de la qualité de données et je développe un agent IA qui lit des rapports financiers. Je cherche mon projet de fin d'études pour février 2027.</p>
+      <div class="links">
+        <a class="btn primary" href="#contact">Me contacter</a>
+        <a class="btn" href="https://www.linkedin.com/in/mohamed-derbel-financial-it-student" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/mohamed15032003" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="side">
+    <div class="photo"><img src="data:image/jpeg;base64,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" alt="Photo de Mohamed Derbel"><p><b>Mohamed Derbel</b>Élève ingénieur · ESPRIT</p></div>
+    <aside class="fiche" aria-label="Disponibilité">
+      <h2>Recherche PFE <span class="status">ouvert</span></h2>
+      <dl>
+        <dt>Début</dt><dd>Février 2027</dd>
+        <dt>Durée</dt><dd>6 mois</dd>
+        <dt>Lieu</dt><dd>Tunis, Ariana, Sousse, Sfax ou à distance</dd>
+        <dt>Convention</dt><dd>Fournie par ESPRIT</dd>
+        <dt>Domaines</dt><dd>Dev, data, IA, FinTech</dd>
+        <dt>Langues</dt><dd>Arabe · Français B2 · Anglais B2</dd>
+      </dl>
+    </aside>
+    </div>
+  </div>
+  <div class="chart"><canvas id="path" aria-hidden="true"></canvas>
+  <ol class="legend" id="legend" aria-label="Mon parcours">
+    <li><span class="n">1</span><span>Prépa Maths-Physique, Sfax</span><time>2022</time></li>
+    <li><span class="n">2</span><span>ESPRIT, ingénierie financière</span><time>2024</time></li>
+    <li><span class="n">3</span><span>Stage RPA, Sopra HR</span><time>juil. 2025</time></li>
+    <li><span class="n">4</span><span>FORSA, 2e place Bal des Projets</span><time>2026</time></li>
+    <li><span class="n">5</span><span>Stage data, IntelliTech</span><time>juil. 2026</time></li>
+    <li><span class="n">6</span><span>FinAgent et simulateur</span><time>sept. 2026</time></li>
+    <li><span class="n">7</span><span>PFE, prochaine étape</span><time>févr. 2027</time></li>
+  </ol>
+  <p class="model"><b>Mon parcours, tracé comme un cours</b><span>pointillés : prochaine étape</span></p></div>
+  </div>
+
+  <section class="block" id="experience">
+    <div class="label">Expériences</div>
+    <div>
+      <article class="item">
+        <div class="meta"><h3>Stagiaire développeur data full-stack</h3><span class="when">juil. – août 2026</span></div>
+        <div class="org">IntelliTech · plateforme MedScraping · à distance</div>
+        <ul>
+          <li>Conception d'une plateforme qui fiabilise des données issues d'un système de scraping.</li>
+          <li>Qualité des données : fusion, déduplication et algorithme de rapprochement pour réduire les faux positifs.</li>
+          <li>Travail en équipe avec Git (plusieurs branches) et une chaîne CI/CD Docker / Jenkins.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">Jenkins</span></div>
+      </article>
+      <article class="item">
+        <div class="meta"><h3>Stagiaire automatisation des processus (RPA)</h3><span class="when">juil. – août 2025</span></div>
+        <div class="org">Sopra HR Software · Tunis · stage de six semaines</div>
+        <ul>
+          <li>Création de robots RPA réutilisables pour automatiser des tâches de l'entreprise.</li>
+          <li>Synchronisation fichiers ↔ MySQL dans les deux sens et envoi automatique d'e-mails personnalisés, pour éviter les saisies à la main.</li>
+        </ul>
+        <div class="tags"><span class="tag">RPA</span><span class="tag">MySQL</span><span class="tag">Automatisation</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="projets">
+    <div class="label">Projets</div>
+    <div>
+      <article class="feature">
+        <p class="kicker">Projet personnel · depuis sept. 2026</p>
+        <h3>FinAgent, un agent IA qui lit les rapports financiers</h3>
+        <p>Un agent RAG + LLM qui lit des rapports annuels (sociétés cotées à la Bourse de Tunis, rapports 10-K) et répond aux questions d'un analyste. Il calcule des ratios financiers, repère les incohérences entre chiffres et résume les facteurs de risque. Je l'ai testé sur des cas réels et corrigé les problèmes trouvés, comme des informations mélangées entre documents ou une recherche sensible aux accents.</p>
+        <div class="flow" id="flow" aria-label="Fonctionnement">
+          <span>PDF du rapport</span><i>→</i><span>découpage</span><i>→</i><span>embeddings</span><i>→</i><span>ChromaDB</span><i>→</i><span>LLM + outils</span><i>→</i><span>réponse sourcée</span>
+        </div>
+        <div class="console" aria-label="Exemple de fonctionnement">
+          <div class="clabel">Exemple de fonctionnement</div>
+          <div id="cons"></div>
+        </div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">MCP</span></div>
+        <div class="links">
+          <a class="btn primary" href="https://fin-agent-afbig5pchzesc8cuea4pws.streamlit.app/" target="_blank" rel="noopener">Voir la démo</a>
+          <a class="btn" href="https://github.com/mohamed15032003/fin-agent" target="_blank" rel="noopener">Code sur GitHub</a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="meta"><h3>FORSA, plateforme FinTech de microcrédit et micro-assurance</h3><span class="when">2026</span></div>
+        <div class="org">Projet d'équipe ESPRIT</div>
+        <span class="badge">2e place au Bal des Projets ESPRIT 2026</span>
+        <ul>
+          <li>Plateforme qui couvre microcrédit, micro-assurance et réclamations, avec des rôles admin, agent et client.</li>
+          <li>Ma contribution : le module réclamations et feedback clients, et l'intégration d'un chatbot dans l'application.</li>
+        </ul>
+        <div class="tags"><span class="tag">Spring Boot</span><span class="tag">Angular</span><span class="tag">MySQL</span></div>
+        <figure class="mini">
+          <div class="board" id="board" aria-hidden="true">
+            <div class="col"><div class="ch">Ouverte <small>client</small></div></div>
+            <div class="col"><div class="ch">En traitement <small>agent</small></div></div>
+            <div class="col"><div class="ch">Résolue <small>suivi admin</small></div></div>
+          </div>
+          <figcaption><b>Mon module dans FORSA</b><span>le parcours d'une réclamation, du client jusqu'à la résolution</span></figcaption>
+        </figure>
+      </article>
+
+      <article class="item">
+        <div class="meta"><h3>Simulateur de salle de marché</h3><span class="when">depuis sept. 2026</span></div>
+        <div class="org">Projet d'équipe ESPRIT</div>
+        <ul>
+          <li>Responsable du module analyse financière et IA (prédiction de marché, agent de trading) d'un simulateur qui couvre trading, stress tests et actuariat.</li>
+          <li>Application web en Spring Boot (API) et React (interface), avec un pipeline de données de marché sur des actions du S&amp;P 500 étudié pendant des crises réelles (2008, COVID-19). Backlog organisé dans Jira.</li>
+        </ul>
+        <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">Python</span><span class="tag">Jira</span></div>
+        <figure class="mini">
+          <div class="seg" role="group" aria-label="Scénario">
+            <button type="button" id="sc-normal" aria-pressed="false">Scénario normal</button>
+            <button type="button" id="sc-shock" aria-pressed="true">Choc de marché</button>
+          </div>
+          <canvas id="stress" aria-hidden="true"></canvas>
+          <figcaption><b>Stress test Monte-Carlo</b><span id="stressinfo">choc de −40 % à mi-période, ordre de grandeur de la crise de 2008 · pointillés : sans choc</span></figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="competences">
+    <div class="label">Compétences</div>
+    <div class="skills">
+      <div><h4>Développement</h4><p>Python / FastAPI, React, Java / Spring Boot, Angular, SQL (MySQL), Docker, Git, CI/CD</p></div>
+      <div><h4>Data &amp; IA</h4><p>RAG, LLM, LangChain, ChromaDB, machine learning (XGBoost, Random Forest, SVM, scikit-learn), qualité et pipelines de données, R</p></div>
+      <div><h4>Finance</h4><p>Analyse financière et ratios, CAPM, Black-Scholes, optimisation de portefeuille, économétrie, stress tests</p></div>
+      <div><h4>Méthodes</h4><p>Agile (Jira), travail à distance, Git multi-branches, documentation, présentation de projets</p></div>
+      <figure class="mini wide">
+        <canvas id="mkw" aria-hidden="true"></canvas>
+        <figcaption><b>Optimisation de portefeuille (Markowitz)</b><span>portefeuilles aléatoires de 4 actifs · axe x : risque σ · axe y : rendement espéré μ</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="formation">
+    <div class="label">Formation</div>
+    <div>
+      <article class="item">
+        <div class="meta"><h3>Diplôme d'ingénieur en ingénierie financière</h3><span class="when">2024 – 2027</span></div>
+        <div class="org">ESPRIT, École d'ingénieurs · Ariana</div>
+        <p style="margin:4px 0 0;max-width:68ch">Génie logiciel, data science, finance de marché, portefeuille, économétrie.</p>
+      </article>
+      <article class="item">
+        <div class="meta"><h3>Classes préparatoires Mathématiques-Physique</h3><span class="when">2022 – 2024</span></div>
+        <div class="org">Faculté des Sciences de Sfax</div>
+      </article>
+      <article class="item">
+        <div class="meta"><h3>Membre IEEE, branche étudiante ESPRIT</h3><span class="when">2024 – 2025</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="label">Contact</div>
+    <div class="contact">
+      <div class="row"><span class="k">E-mail</span><span class="v" id="email">mohamedderbel317@gmail.com</span><button class="copy" type="button" data-copy="email">Copier</button></div>
+      <div class="row"><span class="k">Téléphone</span><span class="v" id="tel">+216 28 655 551</span><button class="copy" type="button" data-copy="tel">Copier</button></div>
+      <div class="row"><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/mohamed-derbel-financial-it-student" target="_blank" rel="noopener">linkedin.com/in/mohamed-derbel-financial-it-student</a></span></div>
+      <div class="row"><span class="k">GitHub</span><span class="v"><a href="https://github.com/mohamed15032003" target="_blank" rel="noopener">github.com/mohamed15032003</a></span></div>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Mohamed Derbel</span><span>Disponible pour un PFE dès février 2027</span></footer>
+</div>
+
+<script>
+/* copy buttons */
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click', function(){
+    var el=document.getElementById(b.dataset.copy), txt=el.textContent.trim();
+    function done(){ b.textContent='Copié'; setTimeout(function(){ b.textContent='Copier'; },1500); }
+    function fallback(){ var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Sélectionné'; setTimeout(function(){ b.textContent='Copier'; },1500); }
+    try{ navigator.clipboard.writeText(txt).then(done, fallback); }catch(e){ fallback(); }
+  });
+});
+(function(){
+  var reduce=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function col(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||'#0E6B57'; }
+  function mono(px){ return px+'px "IBM Plex Mono", ui-monospace, Consolas, monospace'; }
+  function gauss(){ var u=0,v=0; while(!u)u=Math.random(); while(!v)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+  function setup(cv){ var r=cv.getBoundingClientRect(), d=Math.min(window.devicePixelRatio||1,2); cv.width=Math.max(1,r.width*d); cv.height=Math.max(1,r.height*d); var c=cv.getContext('2d'); c.setTransform(d,0,0,d,0,0); return {c:c,W:r.width,H:r.height}; }
+  function axis(g){ var c=g.c; c.strokeStyle=col('--line'); c.lineWidth=1; c.beginPath(); c.moveTo(24,g.H-18); c.lineTo(g.W-6,g.H-18); c.moveTo(24,6); c.lineTo(24,g.H-18); c.stroke(); }
+  var redraws=[];
+
+  /* --- 1. Parcours: timeline drawn like a price chart --- */
+  var pc=document.getElementById('path');
+  if(pc){
+    // date (years), level (rank only, no value), long label, short label
+    var M=[
+      [2022.70,1.0,'Prépa Maths-Physique · Sfax','Prépa'],
+      [2024.70,2.0,'ESPRIT · ingénierie financière','ESPRIT'],
+      [2025.50,2.8,'Stage RPA · Sopra HR','Sopra'],
+      [2026.35,3.4,'FORSA · 2e place Bal des Projets','FORSA'],
+      [2026.50,3.9,'Stage data · IntelliTech','IntelliTech'],
+      [2026.70,4.5,'FinAgent + simulateur','FinAgent'],
+      [2027.09,5.3,'PFE · février 2027','PFE']
+    ];
+    var t0=2022.4, t1=2027.35, prog=0, g=null, seed=[];
+    for(var i=0;i<400;i++) seed.push(gauss());
+    function draw(){
+      g=g||setup(pc); var c=g.c, W=g.W, H=g.H, narrow=W<600; c.clearRect(0,0,W,H);
+      var x0=14, x1=W-14, yb=H-26, yt=16;
+      function X(t){ return x0+(t-t0)/(t1-t0)*(x1-x0); } function Y(l){ return yb-(l-0.6)/(5.0)*(yb-yt); }
+      // years axis
+      c.strokeStyle=col('--line'); c.lineWidth=1; c.beginPath(); c.moveTo(x0,yb+6); c.lineTo(x1,yb+6); c.stroke();
+      c.fillStyle=col('--muted'); c.font=mono(11); c.textAlign='center';
+      for(var yr=2023; yr<=2027; yr++){ var xx=X(yr); c.fillRect(xx,yb+3,1,6); c.fillText(String(yr),xx,H-6); }
+      // build noisy path through milestones (like a price series)
+      var pts=[], k=0;
+      for(var j=0;j<M.length-1;j++){ var A=M[j],B=M[j+1], n=Math.max(6,Math.round((B[0]-A[0])*40));
+        for(var s=0;s<n;s++){ var f=s/n, base=A[1]+(B[1]-A[1])*f, wig=Math.sin(Math.PI*f)*0.18*seed[(k++)%400]; pts.push([A[0]+(B[0]-A[0])*f, base+wig, j]); } }
+      pts.push([M[M.length-1][0],M[M.length-1][1],M.length-1]);
+      var upto=Math.floor(prog*(pts.length-1)), lastReal=pts.findIndex(function(p){return p[2]>=M.length-2;});
+      // area
+      c.beginPath(); c.moveTo(X(pts[0][0]),yb);
+      for(var i=0;i<=Math.min(upto,lastReal);i++) c.lineTo(X(pts[i][0]),Y(pts[i][1]));
+      c.lineTo(X(pts[Math.min(upto,lastReal)][0]),yb); c.closePath(); c.fillStyle=col('--accent-soft'); c.fill();
+      // line (solid until IntelliTech/FinAgent, dashed to PFE)
+      c.strokeStyle=col('--accent'); c.lineWidth=2; c.lineJoin='round';
+      c.beginPath(); for(var i=0;i<=Math.min(upto,lastReal);i++){ var p=pts[i]; i?c.lineTo(X(p[0]),Y(p[1])):c.moveTo(X(p[0]),Y(p[1])); } c.stroke();
+      if(upto>lastReal){ c.setLineDash([5,5]); c.beginPath(); for(var i=lastReal;i<=upto;i++){ var p=pts[i]; i>lastReal?c.lineTo(X(p[0]),Y(p[1])):c.moveTo(X(p[0]),Y(p[1])); } c.stroke(); c.setLineDash([]); }
+      // milestones
+      var reachedT=pts[upto][0];
+      var lis=document.querySelectorAll('#legend li');
+      M.forEach(function(m,idx){ var on=m[0]<=reachedT+1e-6; if(lis[idx]) lis[idx].classList.toggle('on',on); if(!on) return;
+        var x=X(m[0]), y=Y(m[1]), last=idx===M.length-1, r=narrow?7.5:9;
+        c.beginPath(); c.arc(x,y,r,0,7); c.fillStyle=last?col('--paper'):col('--accent'); c.fill(); c.lineWidth=2; c.strokeStyle=col('--accent'); c.stroke();
+        c.fillStyle=last?col('--accent'):col('--paper'); c.font=mono(narrow?9.5:10.5); c.textAlign='center'; c.textBaseline='middle'; c.fillText(String(idx+1),x,y+.5); c.textBaseline='alphabetic';
+      });
+    }
+    redraws.push(function(){ g=null; draw(); });
+    if(reduce){ prog=1; draw(); }
+    else { var st=null; function step(ts){ if(st===null) st=ts; prog=Math.min(1,(ts-st)/4200); draw(); if(prog<1) requestAnimationFrame(step); } requestAnimationFrame(step); }
+  }
+
+  /* --- 2. FinAgent: pipeline + example console --- */
+  var flow=document.getElementById('flow'), cons=document.getElementById('cons');
+  if(flow && cons){
+    var chips=[].slice.call(flow.querySelectorAll('span'));
+    var lines=[
+      ['q','Q : Quel est le ratio d’endettement de la société ?'],
+      ['s','→ lecture du PDF et découpage en passages'],
+      ['s','→ recherche des passages du bilan (base vectorielle)'],
+      ['s','→ calcul : dettes totales ÷ capitaux propres'],
+      ['a','✓ réponse avec le ratio et la page du rapport citée']
+    ];
+    var chipFor=[0,1,3,4,5];
+    function render(n,partial){ cons.innerHTML=''; for(var i=0;i<n;i++){ var d=document.createElement('div'); d.className=lines[i][0]; d.textContent= (i===n-1 && partial!=null)? lines[i][1].slice(0,partial) : lines[i][1]; if(i===n-1 && partial!=null) d.classList.add('cur'); cons.appendChild(d);} }
+    function light(i){ chips.forEach(function(c,j){ c.classList.toggle('on', j===i); }); }
+    if(reduce){ render(lines.length); }
+    else {
+      var li=0, ch=0;
+      (function tick(){
+        if(document.hidden){ return setTimeout(tick,500); }
+        if(li>=lines.length){ light(-1); setTimeout(function(){ li=0; ch=0; tick(); },3200); return; }
+        light(chipFor[li]); ch+=2; render(li+1,ch);
+        if(ch>=lines[li][1].length){ li++; ch=0; setTimeout(tick,650); } else setTimeout(tick,28);
+      })();
+    }
+  }
+
+  /* --- 3. FORSA: complaint lifecycle board --- */
+  var board=document.getElementById('board');
+  if(board){
+    var cols=board.querySelectorAll('.col');
+    var tickets=['Retard de versement du microcrédit','Contrat de micro-assurance introuvable','Erreur sur un échéancier','Demande de remboursement'];
+    var live=[], nid=0;
+    function card(t){ var d=document.createElement('div'); d.className='tk'; d.innerHTML='<em>#'+(1040+nid)+'</em>'; d.appendChild(document.createTextNode(t)); return d; }
+    function place(){ cols.forEach(function(c){ c.querySelectorAll('.tk').forEach(function(x){x.remove();}); }); live.forEach(function(k){ cols[k.stage].appendChild(k.el); }); }
+    if(reduce){ for(var i=0;i<3;i++){ nid++; live.push({el:card(tickets[i]),stage:i}); } place(); }
+    else {
+      (function step(){
+        if(!document.hidden){
+          live.forEach(function(k){ k.stage++; }); live=live.filter(function(k){ return k.stage<3; });
+          nid++; live.unshift({el:card(tickets[nid%tickets.length]),stage:0}); place();
+        }
+        setTimeout(step,1900);
+      })();
+    }
+  }
+
+  /* --- 4. Simulator: Monte-Carlo stress test --- */
+  var sc=document.getElementById('stress');
+  if(sc){
+    var mu=.05, sg=.2, N=40, STEPS=200, shock=-0.40, shockAt=100, paths=[], base=[], prog2=0, gs=null, mode='shock';
+    var bN=document.getElementById('sc-normal'), bS=document.getElementById('sc-shock'), info=document.getElementById('stressinfo');
+    function simulate(){ paths=[]; base=[]; for(var i=0;i<N;i++){ var S=[1],B=[1]; for(var k=1;k<=STEPS;k++){ var z=gauss(), g=Math.exp((mu-.5*sg*sg)/STEPS+sg*Math.sqrt(1/STEPS)*z); B.push(B[k-1]*g); var v=S[k-1]*g; if(mode==='shock'&&k===shockAt) v*=1+shock; S.push(v);} paths.push(S); base.push(B);} }
+    function mean(arr,k){ var t=0; arr.forEach(function(p){t+=p[k];}); return t/arr.length; }
+    function draw(){
+      gs=gs||setup(sc); var c=gs.c, W=gs.W, H=gs.H; c.clearRect(0,0,W,H); axis(gs);
+      var x0=24,x1=W-6,y0=H-18,top=8, lo=.35, hi=1.6; function X(k){return x0+k/STEPS*(x1-x0);} function Y(v){return y0-(Math.min(Math.max(v,lo),hi)-lo)/(hi-lo)*(y0-top);}
+      var upto=Math.floor(prog2*STEPS);
+      if(mode==='shock'){ c.fillStyle=col('--accent-soft'); c.fillRect(X(shockAt)-1,top,2,y0-top); }
+      c.strokeStyle=col('--accent'); c.globalAlpha=.22; c.lineWidth=1;
+      paths.forEach(function(P){ c.beginPath(); for(var k=0;k<=upto;k++){ k?c.lineTo(X(k),Y(P[k])):c.moveTo(X(k),Y(P[k])); } c.stroke(); });
+      c.globalAlpha=1;
+      // mean paths
+      c.setLineDash([4,4]); c.strokeStyle=col('--muted'); c.lineWidth=1.3; c.beginPath(); for(var k=0;k<=upto;k++){ var v=mean(base,k); k?c.lineTo(X(k),Y(v)):c.moveTo(X(k),Y(v)); } c.stroke(); c.setLineDash([]);
+      c.strokeStyle=col('--accent'); c.lineWidth=2.2; c.beginPath(); for(var k=0;k<=upto;k++){ var v=mean(paths,k); k?c.lineTo(X(k),Y(v)):c.moveTo(X(k),Y(v)); } c.stroke();
+      c.fillStyle=col('--muted'); c.font=mono(11); c.textAlign='left';
+      [0.5,1.0,1.5].forEach(function(v){ c.fillText(v.toFixed(1),28,Y(v)-3); });
+      c.textAlign='center'; c.fillText('t = 0',X(0)+16,H-4); c.fillText('t = 1 an',X(STEPS)-26,H-4);
+      if(upto>=STEPS){ var mS=mean(paths,STEPS), mB=mean(base,STEPS); c.textAlign='right'; c.fillStyle=col('--ink'); c.font=mono(11.5);
+        c.fillText('valeur moyenne finale : '+(mS*100).toFixed(0)+' (sans choc : '+(mB*100).toFixed(0)+')',W-8,18); }
+    }
+    function run(){ simulate(); prog2=0; bN.setAttribute('aria-pressed',mode==='normal'); bS.setAttribute('aria-pressed',mode==='shock');
+      info.textContent= mode==='shock' ? 'choc de −40 % à mi-période, ordre de grandeur de la crise de 2008 · pointillés : sans choc · base 100' : 'trajectoires sans choc (mouvement brownien géométrique, μ = 5 %, σ = 20 %) · base 100';
+      if(reduce){ prog2=1; draw(); return; } var st=null; function step(ts){ if(st===null) st=ts; prog2=Math.min(1,(ts-st)/3000); draw(); if(prog2<1) requestAnimationFrame(step); } requestAnimationFrame(step); }
+    bN.addEventListener('click',function(){ mode='normal'; run(); });
+    bS.addEventListener('click',function(){ mode='shock'; run(); });
+    redraws.push(function(){ gs=null; draw(); });
+    run();
+  }
+
+  /* --- Markowitz efficient frontier --- */
+  var mc=document.getElementById('mkw');
+  if(mc){
+    var m=[.06,.09,.12,.15], s=[.10,.15,.22,.30], rho=[[1,.3,.2,.1],[.3,1,.35,.25],[.2,.35,1,.4],[.1,.25,.4,1]];
+    var pts=[], G=null, target=1400, sxMax=.32, syMin=.05, syMax=.155, sxMin=.07;
+    function port(){ var w=[0,0,0,0].map(function(){return -Math.log(Math.random());}), t=w.reduce(function(a,b){return a+b;}); w=w.map(function(x){return x/t;});
+      var r=0,v=0; for(var i=0;i<4;i++){ r+=w[i]*m[i]; for(var j=0;j<4;j++) v+=w[i]*w[j]*s[i]*s[j]*rho[i][j]; } return [Math.sqrt(v),r]; }
+    function frontier(){ // upper envelope of sampled points
+      var B=40, best=new Array(B).fill(null); pts.forEach(function(p){ var b=Math.floor((p[1]-syMin)/(syMax-syMin)*B); if(b<0||b>=B) return; if(!best[b]||p[0]<best[b][0]) best[b]=p; });
+      var f=best.filter(Boolean).sort(function(a,b){return a[1]-b[1];}); var mi=0; f.forEach(function(p,i){ if(p[0]<f[mi][0]) mi=i; }); return f.slice(mi); }
+    function draw(){
+      G=G||setup(mc); var c=G.c, W=G.W, H=G.H; c.clearRect(0,0,W,H); axis(G);
+      var x0=24,x1=W-6,y0=H-18,top=8; function X(v){return x0+(v-sxMin)/(sxMax-sxMin)*(x1-x0);} function Y(v){return y0-(v-syMin)/(syMax-syMin)*(y0-top);}
+      c.fillStyle=col('--muted'); c.globalAlpha=.35; pts.forEach(function(p){ c.fillRect(X(p[0])-1,Y(p[1])-1,2,2); }); c.globalAlpha=1;
+      if(pts.length>200){ var f=frontier(); c.strokeStyle=col('--accent'); c.lineWidth=2; c.beginPath(); f.forEach(function(p,i){ i?c.lineTo(X(p[0]),Y(p[1])):c.moveTo(X(p[0]),Y(p[1])); }); c.stroke();
+        var mv=f[0]; c.fillStyle=col('--accent'); c.beginPath(); c.arc(X(mv[0]),Y(mv[1]),4,0,7); c.fill();
+        c.font='11px '+getComputedStyle(document.body).getPropertyValue('--mono'); c.textAlign='left'; c.fillText('variance minimale',X(mv[0])+8,Y(mv[1])+4); }
+      c.fillStyle=col('--muted'); c.font='11px '+getComputedStyle(document.body).getPropertyValue('--mono'); c.textAlign='center';
+      [0.10,0.15,0.20,0.25].forEach(function(v){ c.fillText(Math.round(v*100)+' %',X(v),H-4); });
+      c.textAlign='left'; [0.06,0.10,0.14].forEach(function(v){ c.fillText(Math.round(v*100)+' %',28,Y(v)-3); });
+    }
+    if(reduce){ for(var i=0;i<target;i++) pts.push(port()); draw(); }
+    else { var t2=function(){ if(!document.hidden){ if(pts.length<target){ for(var i=0;i<25;i++) pts.push(port()); } else pts=[]; draw(); } setTimeout(t2, pts.length>=target?3000:50); }; t2(); }
+    if(window.ResizeObserver) new ResizeObserver(function(){ G=null; draw(); }).observe(mc);
+  }
+
+  if(window.ResizeObserver){ var tm; var ro=new ResizeObserver(function(){ clearTimeout(tm); tm=setTimeout(function(){ redraws.forEach(function(f){f();}); },80); }); ['path','stress'].forEach(function(id){ var e=document.getElementById(id); if(e) ro.observe(e); }); }
+})();
+</script>
+</body>
+</html>
