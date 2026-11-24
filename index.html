@@ -148,6 +148,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;font-family:var(
 .seg button{font:500 12px var(--body);padding:6px 12px;background:none;border:0;color:var(--muted);cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--paper)}
 #stress{display:block;width:100%;height:170px}
+#mcconv{display:block;width:100%;height:170px}
 .fx{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:10px}
 @media (max-width:560px){ .fx{grid-template-columns:minmax(0,1fr)} }
 .fx-in,.fx-dash{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px;min-width:0}
@@ -233,7 +234,7 @@ footer::before{background:var(--deep)}
       <dl>
         <dt>Début</dt><dd>Février 2027</dd>
         <dt>Durée</dt><dd>6 mois</dd>
-        <dt>Lieu</dt><dd>Tunis, Ariana, Sousse, Sfax ou à distance</dd>
+        <dt>Lieu</dt><dd>Grand Tunis, Sfax ou à distance</dd>
         <dt>Convention</dt><dd>Fournie par ESPRIT</dd>
         <dt>Domaines</dt><dd>Dev, data, IA, FinTech</dd>
         <dt>Langues</dt><dd>Arabe · Français B2 · Anglais B2</dd>
@@ -339,10 +340,12 @@ footer::before{background:var(--deep)}
 
       <article class="item">
         <div class="meta"><h3>Simulateur de salle de marché</h3><span class="when">depuis sept. 2026</span></div>
-        <div class="org">Projet d'équipe ESPRIT</div>
+        <div class="org">Projet d'équipe ESPRIT · 5 personnes</div>
         <ul>
-          <li>Simulateur de salle de marché développé en équipe, qui couvre trading, analyse financière et IA (prédiction de marché, agent de trading), stress tests et actuariat.</li>
-          <li>Application web en Spring Boot (API) et React (interface), avec un pipeline de données de marché sur des actions du S&amp;P 500 étudié pendant des crises réelles (2008, COVID-19). Backlog organisé dans Jira.</li>
+          <li>Plateforme d'entraînement à la salle de marché, développée en équipe : chaque joueur a un portefeuille global et entre dans des salles classées par rang (ELO), avec un prix d'entrée et un crédit possible.</li>
+          <li><b>Module de risque</b> : backtesting sur 70 % / 30 % des données, comparé à un indice de la BVMT ; stress tests sur les scénarios 2008, 2011 et 2020, plus un stress test inversé ; actuariat simplifié qui donne un verdict de risque expliqué en phrases claires.</li>
+          <li>Académie avec des cours par niveau (1 à 3) et des vidéos ; salles d'entraînement sur cinq thèmes, avec une note sur 100 et une salle conseillée.</li>
+          <li>Application web en Spring Boot (API) et React (interface), backlog organisé dans Jira.</li>
         </ul>
         <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">Python</span><span class="tag">Jira</span></div>
         <figure class="mini">
@@ -351,7 +354,23 @@ footer::before{background:var(--deep)}
             <button type="button" id="sc-shock" aria-pressed="true">Choc de marché</button>
           </div>
           <canvas id="stress" aria-hidden="true"></canvas>
-          <figcaption><b>Stress test Monte-Carlo</b><span id="stressinfo">choc de −40 % à mi-période, ordre de grandeur de la crise de 2008 · pointillés : sans choc</span></figcaption>
+          <figcaption><b>Illustration : principe d'un stress test Monte-Carlo</b><span id="stressinfo">choc de −40 % à mi-période, ordre de grandeur de la crise de 2008 · pointillés : sans choc</span></figcaption>
+        </figure>
+      </article>
+
+      <article class="item">
+        <div class="meta"><h3>Pricing d'options par Monte-Carlo et réduction de variance</h3><span class="when">2026</span></div>
+        <div class="org">Projet de groupe ESPRIT</div>
+        <ul>
+          <li>Modèle de Black-Scholes : EDS du sous-jacent, démonstration par le lemme d'Itô, loi log-normale et formule fermée du call (<b>10,4506</b>), qui sert de référence.</li>
+          <li>Monte-Carlo standard avec intervalle de confiance à 95 % pour N de 10³ à 10⁶, avec graphes de convergence.</li>
+          <li>Réduction de variance : variables antithétiques (<b>gain ×2,00</b>) et variable de contrôle S<sub>T</sub> (<b>gain ×6,86</b>), comparées sur le prix, l'IC, le temps de calcul et le gain.</li>
+          <li>En cours : options asiatiques (géométrique puis arithmétique).</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Jupyter</span><span class="tag">Black-Scholes</span><span class="tag">Monte-Carlo</span></div>
+        <figure class="mini">
+          <canvas id="mcconv" aria-hidden="true"></canvas>
+          <figcaption><b>Illustration : convergence vers le prix Black-Scholes</b><span>recalculé dans le navigateur · bande bleue claire : IC 95 % du Monte-Carlo standard · bande foncée : avec variable de contrôle · pointillés : 10,4506</span></figcaption>
         </figure>
       </article>
     </div>
@@ -362,7 +381,7 @@ footer::before{background:var(--deep)}
     <div class="skills">
       <div><h4>Développement</h4><p>Python / FastAPI, React, Java / Spring Boot, Angular, SQL (MySQL), Docker, Git, CI/CD</p></div>
       <div><h4>Data &amp; IA</h4><p>RAG, LLM, LangChain, ChromaDB, machine learning (XGBoost, Random Forest, SVM, scikit-learn), qualité et pipelines de données, R</p></div>
-      <div><h4>Finance</h4><p>Analyse financière et ratios, CAPM, Black-Scholes, optimisation de portefeuille, économétrie, stress tests</p></div>
+      <div><h4>Finance</h4><p>Analyse financière et ratios, CAPM, Black-Scholes, Monte-Carlo et réduction de variance, optimisation de portefeuille, économétrie, stress tests, backtesting</p></div>
       <div><h4>Méthodes</h4><p>Agile (Jira), travail à distance, Git multi-branches, documentation, présentation de projets</p></div>
       <figure class="mini wide">
         <canvas id="mkw" aria-hidden="true"></canvas>
@@ -382,6 +401,16 @@ footer::before{background:var(--deep)}
       <article class="item">
         <div class="meta"><h3>Classes préparatoires Mathématiques-Physique</h3><span class="when">2022 – 2024</span></div>
         <div class="org">Faculté des Sciences de Sfax</div>
+      </article>
+      <article class="item">
+        <div class="meta"><h3>Certifications</h3><span class="when">2026</span></div>
+        <div class="org">Hashgraph Association · AWS Academy</div>
+        <ul>
+          <li>Hedera Certified Developer Associate (HCDA)</li>
+          <li>Hedera Certified Foundation (HCF)</li>
+          <li>Hedera Business Foundation (HBF)</li>
+          <li>AWS Academy Graduate – Cloud Foundations</li>
+        </ul>
       </article>
       <article class="item">
         <div class="meta"><h3>Membre IEEE, branche étudiante ESPRIT</h3><span class="when">2024 – 2025</span></div>
@@ -570,12 +599,39 @@ document.querySelectorAll('.copy').forEach(function(b){
         c.fillText('valeur moyenne finale : '+(mS*100).toFixed(0)+' (sans choc : '+(mB*100).toFixed(0)+')',W-8,18); }
     }
     function run(){ simulate(); prog2=0; bN.setAttribute('aria-pressed',mode==='normal'); bS.setAttribute('aria-pressed',mode==='shock');
-      info.textContent= mode==='shock' ? 'choc de −40 % à mi-période, ordre de grandeur de la crise de 2008 · pointillés : sans choc · base 100' : 'trajectoires sans choc (mouvement brownien géométrique, μ = 5 %, σ = 20 %) · base 100';
+      info.textContent= mode==='shock' ? 'données simulées · choc de −40 % à mi-période · pointillés : sans choc · base 100' : 'données simulées · trajectoires sans choc (mouvement brownien géométrique, μ = 5 %, σ = 20 %) · base 100';
       if(reduce){ prog2=1; draw(); return; } var st=null; function step(ts){ if(st===null) st=ts; prog2=Math.min(1,(ts-st)/3000); draw(); if(prog2<1) requestAnimationFrame(step); } requestAnimationFrame(step); }
     bN.addEventListener('click',function(){ mode='normal'; run(); });
     bS.addEventListener('click',function(){ mode='shock'; run(); });
     redraws.push(function(){ gs=null; draw(); });
     run();
+  }
+
+  /* --- Monte-Carlo convergence (illustration) --- */
+  var mcv=document.getElementById('mcconv');
+  if(mcv){
+    var mS0=100,mK=100,mr=.05,msig=.2,mT=1,mREF=10.4506,mdisc=Math.exp(-mr*mT),mEST=mS0*Math.exp(mr*mT),pts2=[],gm=null,pr3=0;
+    (function(){ var n=0,sy=0,syy=0,sx=0,sxx=0,sxy=0,NMAX=1000000,marks=[];
+      for(var e=2;e<=6.0001;e+=0.2) marks.push(Math.round(Math.pow(10,e)));
+      var mi=0;
+      while(n<NMAX){ var z=gauss(), ST=mS0*Math.exp((mr-.5*msig*msig)*mT+msig*Math.sqrt(mT)*z), Y=mdisc*Math.max(ST-mK,0);
+        n++; sy+=Y; syy+=Y*Y; sx+=ST; sxx+=ST*ST; sxy+=ST*Y;
+        if(n===marks[mi]){ var my=sy/n, vy=(syy-n*my*my)/(n-1), mx=sx/n, vx=(sxx-n*mx*mx)/(n-1), cxy=(sxy-n*mx*my)/(n-1), b=cxy/vx, mc=my-b*(mx-mEST), vc=Math.max(vy-cxy*cxy/vx,0);
+          pts2.push([Math.log(n)/Math.LN10,my,1.96*Math.sqrt(vy/n),mc,1.96*Math.sqrt(vc/n)]); mi++; } } })();
+    function drawMC(){
+      gm=gm||setup(mcv); var c=gm.c,W=gm.W,H=gm.H; c.clearRect(0,0,W,H); axis(gm);
+      var x0=24,x1=W-6,y0=H-18,top=8,lo=8.4,hi=12.6; function X(v){return x0+(v-2)/4*(x1-x0);} function Y(v){return y0-(Math.min(Math.max(v,lo),hi)-lo)/(hi-lo)*(y0-top);}
+      var k=Math.max(1,Math.ceil(pr3*pts2.length)), P=pts2.slice(0,k);
+      function band(i1,i2,color,alpha){ c.fillStyle=col(color); c.globalAlpha=alpha; c.beginPath(); P.forEach(function(p,i){ var x=X(p[0]),y=Y(p[i1]+p[i2]); i?c.lineTo(x,y):c.moveTo(x,y); }); for(var i=P.length-1;i>=0;i--){ c.lineTo(X(P[i][0]),Y(P[i][i1]-P[i][i2])); } c.closePath(); c.fill(); c.globalAlpha=1; }
+      band(1,2,'--accent',.15); band(3,4,'--accent',.45);
+      c.setLineDash([4,4]); c.strokeStyle=col('--muted'); c.lineWidth=1.3; c.beginPath(); c.moveTo(x0,Y(mREF)); c.lineTo(x1,Y(mREF)); c.stroke(); c.setLineDash([]);
+      c.strokeStyle=col('--accent'); c.lineWidth=1.6; c.beginPath(); P.forEach(function(p,i){ i?c.lineTo(X(p[0]),Y(p[1])):c.moveTo(X(p[0]),Y(p[1])); }); c.stroke();
+      c.fillStyle=col('--muted'); c.font=mono(11); c.textAlign='left'; [9,10,11,12].forEach(function(v){ c.fillText(v.toFixed(0),28,Y(v)-3); });
+      c.textAlign='center'; ['10²','10³','10⁴','10⁵','10⁶'].forEach(function(t,i){ c.fillText(t,X(2+i)+(i===0?10:i===4?-10:0),H-4); });
+      if(pr3>=1){ var L=pts2[pts2.length-1]; c.textAlign='right'; c.fillStyle=col('--ink'); c.font=mono(11.5); var t1='N = 10⁶ : '+L[1].toFixed(3).replace('.',',')+' ± '+L[2].toFixed(3).replace('.',','), t2='contrôle : ± '+L[4].toFixed(3).replace('.',','); if(W<560){ c.fillText(t1,W-8,18); c.fillText(t2,W-8,32); } else c.fillText(t1+'  ·  '+t2,W-8,18); }
+    }
+    if(reduce){ pr3=1; drawMC(); } else { var st3=null; (function step(ts){ if(st3===null) st3=ts; pr3=Math.min(1,(ts-st3)/2500); drawMC(); if(pr3<1) requestAnimationFrame(step); })(performance.now()); }
+    redraws.push(function(){ gm=null; drawMC(); });
   }
 
   /* --- Markowitz efficient frontier --- */
@@ -604,7 +660,7 @@ document.querySelectorAll('.copy').forEach(function(b){
     if(window.ResizeObserver) new ResizeObserver(function(){ G=null; draw(); }).observe(mc);
   }
 
-  if(window.ResizeObserver){ var tm; var ro=new ResizeObserver(function(){ clearTimeout(tm); tm=setTimeout(function(){ redraws.forEach(function(f){f();}); },80); }); ['path','stress'].forEach(function(id){ var e=document.getElementById(id); if(e) ro.observe(e); }); }
+  if(window.ResizeObserver){ var tm; var ro=new ResizeObserver(function(){ clearTimeout(tm); tm=setTimeout(function(){ redraws.forEach(function(f){f();}); },80); }); ['path','stress','mcconv'].forEach(function(id){ var e=document.getElementById(id); if(e) ro.observe(e); }); }
 })();
 </script>
 </body>
